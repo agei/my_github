@@ -1,0 +1,26 @@
+#!/bin/sh
+
+brctl delif br-lan eth1
+insmod /lib/modules/3.10.20/bonding.ko
+cd /sys/devices/virtual/net/bond0/bonding
+ifconfig eth1 down
+
+echo "balance-xor" > mode
+# echo "balance-rr" > mode
+echo "layer2+3" > xmit_hash_policy
+echo 1000 > miimon
+echo +eth1 > slaves
+echo +eth2 > slaves
+ifconfig eth1 up
+ifconfig eth2 up
+ifconfig bond0 up
+# ifconfig bond0 192.168.1.1 netmask 255.255.255.0 up
+
+vconfig add bond0 1
+vconfig add bond0 2
+ifconfig bond0.1 up
+ifconfig bond0.2 up
+brctl addif br-lan bond0.1
+# brctl addif br-lan bond0.2
+brctl addif br-lan eth0
+ifconfig br-lan 192.168.1.1 netmask 255.255.255.0 up
