@@ -1,6 +1,7 @@
 # !/bin/sh
 
-# WINDER_SVN_IP=118.166.251.119
+WINDER_SVN_IP=220.136.172.226
+
 
 if [ -z "$1" ]; then
     echo "$0: missing parameter!"
