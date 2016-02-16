@@ -1,7 +1,5 @@
 # !/bin/sh
 
-# WINDER_SVN_IP=220.136.172.226
-WINDER_SVN_IP=114.45.16.201
+SVN_IP=$HT5F_SVN_IP
 
-
-svn ls svn+ssh://jonathan@$WINDER_SVN_IP/home/svnroot/winder_projects/
+svn ls svn+ssh://jonathan@$SVN_IP/home/svnroot/winder_projects/
