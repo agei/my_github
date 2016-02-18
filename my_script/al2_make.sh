@@ -1,4 +1,4 @@
 # !/bin/sh
 
-make CROSS_COMPILE=aarch64-linux-gnu- ARCH=arm $1 $2
+make $1 $2 CROSS_COMPILE=aarch64-linux-gnu- ARCH=arm64
 
