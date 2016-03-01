@@ -1,0 +1,57 @@
+#!/bin/sh
+
+START=20
+STOP=90
+
+SERVICE_DAEMONIZE=1
+SERVICE_WRITE_PID=1
+
+start() 
+{
+        # cd /wigig
+
+
+        wpa_supplicant -Dnl80211 -iwlan0 -c ./ap.wlan0.wpasup &
+
+        sleep 1
+
+        brctl addif br-lan wlan0
+
+
+        # rmmod usb-storage
+
+        # insmod /lib/modules/3.4.103/sxuptp_wq.ko
+        # insmod /lib/modules/3.4.103/sxuptp.ko
+        # insmod /lib/modules/3.4.103/sxuptp_devfilter.ko
+        # echo 0 > /proc/sxuptp/usbmode.port1
+
+        # insmod /lib/modules/3.4.103/sxuptp_driver.ko          
+
+        # jcpd
+
+        # insmod /lib/modules/3.4.103/usb-storage.ko
+
+
+}
+
+restart() {
+        ifdown -a
+        sleep 1
+        start
+}
+
+shutdown() {
+        ifdown -a
+        stop
+}
+
+stop() {
+        /sbin/wifi down
+        service_stop /sbin/netifd
+}
+
+reload() {
+        ubus call network reload
+        /sbin/wifi down
+        /sbin/wifi up
+}

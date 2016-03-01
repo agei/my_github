@@ -1,0 +1,17 @@
+#
+# Sample wpa_supplicant config for non-secure AP
+#
+
+# do not scan prior to start AP
+ap_scan=2
+
+network={
+        # configure
+        frequency=60480
+        ssid="anna-11ad"
+        # rest - leave as is
+        # mode=2 for the AP
+        mode=2
+        key_mgmt=NONE
+}
+
